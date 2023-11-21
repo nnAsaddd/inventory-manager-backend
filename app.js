@@ -6,15 +6,24 @@ const connectDB = require("./db/connection");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
-
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://futureafinds.netlify.app",
+];
 // Rest of the packages
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://futureafinds.netlify.app/",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: (origin, callback) => {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("NOT Allowed by CORS"));
+      }
+    },
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 
