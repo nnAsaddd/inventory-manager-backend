@@ -59,6 +59,8 @@ const login = async (req, res) => {
     userRole: user.role,
   };
   const token = user.createToken(userToken);
+  console.log("ello");
+  console.log(token);
   user.sendCookies(res, token);
   res.status(StatusCodes.OK).json({ user });
 };
