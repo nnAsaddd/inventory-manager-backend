@@ -59,22 +59,11 @@ const login = async (req, res) => {
     userName: user.name,
     userRole: user.role,
   };
-  const accessToken = jwt.sign(
-    {
-      userInfo: {
-        userID: user._id,
-        userName: user.name,
-        userRole: user.role,
-      },
-    },
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "15m" }
-  );
   const token = user.createToken(userToken);
   console.log("ello");
-  console.log("Access Token" + accessToken);
+  console.log("Token" + token);
   user.sendCookies(res, token);
-  res.status(StatusCodes.OK).json({ user, accessToken });
+  res.status(StatusCodes.OK).json({ user });
 };
 
 // Logout
