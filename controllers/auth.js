@@ -35,7 +35,6 @@ const register = async (req, res) => {
 
 // Login
 const login = async (req, res) => {
-  res.status(StatusCodes.OK).json({ hello : "hello boi" });
   const { email, password } = req.body;
   if (!email || !password) {
     throw new BadRequestError("Please provide email and password");
