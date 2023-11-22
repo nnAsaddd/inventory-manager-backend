@@ -58,7 +58,6 @@ UserSchema.methods.sendCookies = (res, token) => {
     httpOnly: false,
     expires: new Date(Date.now() + oneDay),
     secure: false,
-    sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
   });
 };
 
