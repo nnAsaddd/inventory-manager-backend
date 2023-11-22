@@ -38,6 +38,7 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     throw new BadRequestError("Please provide email and password");
+    console.log("no user");
   }
 
   // Checking is Email valid or not
