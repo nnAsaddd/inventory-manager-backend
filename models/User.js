@@ -57,7 +57,7 @@ UserSchema.methods.sendCookies = (res, token) => {
   res.cookie("token", token, {
     httpOnly: false,
     expires: new Date(Date.now() + oneDay),
-    secure: false,
+    secure: true,
     sameSite : "None",
   });
 };
