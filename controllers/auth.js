@@ -64,12 +64,13 @@ const login = async (req, res) => {
   const accessToken = jwt.sign(
     {
       userInfo: {
-        username: foundUser.username,
-        roles: foundUser.roles,
+        userID: user._id,
+        userName: user.name,
+        userRole: user.role,
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "15m" }
+    { expiresIn: "1d" }
   );
   console.log("ello");
   console.log("Token" + token);
