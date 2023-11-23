@@ -10,7 +10,7 @@ const {
 const { userAuthMiddleware, userRoleAuth } = require("../middlewares/userAuth");
 
 // Attaching user auth middleware for all product routes
-//router.use(userAuthMiddleware);
+router.use(userAuthMiddleware);
 
 // Routes
 router.get("/", getAllProducts);
