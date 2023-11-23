@@ -61,11 +61,23 @@ const login = async (req, res) => {
     userRole: user.role,
   };
   const token = user.createToken(userToken);
+  const accessToken = jwt.sign(
+    {
+      userInfo: {
+        username: foundUser.username,
+        roles: foundUser.roles,
+      },
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "15m" }
+  );
   console.log("ello");
   console.log("Token" + token);
+  console.log("ACCESS TOKEN : " + accessToken);
   user.sendCookies(res, token);
-  res.status(StatusCodes.OK).json({ user });
+  res.status(StatusCodes.OK).json({ user, accessToken });
 };
+
 
 // Logout
 const logout = async (req, res) => {
